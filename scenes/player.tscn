@@ -2,20 +2,19 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8alpq"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mx16o"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5rj28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tdhd"]
-size = Vector2(2.5, 5)
+size = Vector2(1, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(10.405, 10.405)
+scale = Vector2(10, 10)
 script = ExtResource("1_8alpq")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, 0)
-scale = Vector2(2.5, 5)
-texture = SubResource("PlaceholderTexture2D_mx16o")
+texture = SubResource("PlaceholderTexture2D_5rj28")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
+position = Vector2(-2.38419e-08, 0)
 shape = SubResource("RectangleShape2D_6tdhd")

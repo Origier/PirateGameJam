@@ -1,21 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://c43ctpjmhvtfl"]
+[gd_scene load_steps=6 format=3 uid="uid://c43ctpjmhvtfl"]
 
 [ext_resource type="PackedScene" uid="uid://q4bn3pl06wcl" path="res://scenes/player.tscn" id="1_7jrof"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_movm3"]
 [ext_resource type="PackedScene" uid="uid://deih6dyjylu6b" path="res://scenes/platform.tscn" id="2_xtubp"]
+[ext_resource type="PackedScene" uid="uid://cm2m3dhu54o7f" path="res://scenes/shadow.tscn" id="4_tagtd"]
+[ext_resource type="PackedScene" uid="uid://bkjmle6cdrvel" path="res://scenes/player_camera.tscn" id="5_nw6xr"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_movm3")
 
 [node name="Player" parent="." instance=ExtResource("1_7jrof")]
-position = Vector2(198, 542)
+position = Vector2(114, 560)
 
-[node name="Platform" parent="." instance=ExtResource("2_xtubp")]
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player", "shadow") instance=ExtResource("5_nw6xr")]
+player = NodePath("../Player")
+shadow = NodePath("../Shadow")
+
+[node name="Shadow" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tagtd")]
+position = Vector2(92, 560)
+player = NodePath("../Player")
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(362, 576)
 
-[node name="Platform2" parent="." instance=ExtResource("2_xtubp")]
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(848, 495)
 
-[node name="Platform3" parent="." instance=ExtResource("2_xtubp")]
+[node name="Platform3" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(200, 416)
 scale = Vector2(0.5, 1)
+
+[connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]
