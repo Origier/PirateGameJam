@@ -23,6 +23,11 @@ var flipped_x := false
 # Player that the shadow will follow - must be added in the level
 @export var player : CharacterBody2D = null
 
+# Used to slowly move the shadow off screen when the player dies
+@export var reverse_gravity = -2
+var climbing_y = 0
+var player_dead := false
+
 # Sets up the shadow to be positioned near the player
 func _ready():
 	$ShadowPath2D/PathFollow2D.loop = false
@@ -32,20 +37,30 @@ func _ready():
 
 # Determines how the shadow will move, either following the player or being controlled
 func _process(delta):
-	if controlled:
+	if player_dead:
+		escape_scene(delta)
+	elif controlled:
 		control_shadow(delta)
-	else:
-		if player != null:
-			# Flips the shadows position relative to player movement
-			if (player.position.x < last_player_x && not flipped_x):
-				x_offset_from_player *= -1
-				flipped_x = true
-			elif (player.position.x > last_player_x && flipped_x):
-				x_offset_from_player *= -1
-				flipped_x = false
-			last_player_x = player.position.x
-			update_path(delta)
-			move_along_path(delta)
+	elif player != null:
+		follow_player(delta)
+
+# Causes the shadow to slowly escape out of the scene when the player dies
+func escape_scene(delta):
+	climbing_y += reverse_gravity * delta
+	position = Vector2(position.x, position.y + climbing_y)
+
+# Causes the shadow to draw a curve to the player and follows it
+func follow_player(delta):
+	# Flips the shadows position relative to player movement
+	if (player.position.x < last_player_x && not flipped_x):
+		x_offset_from_player *= -1
+		flipped_x = true
+	elif (player.position.x > last_player_x && flipped_x):
+		x_offset_from_player *= -1
+		flipped_x = false
+	last_player_x = player.position.x
+	update_path(delta)
+	move_along_path(delta)
 
 # Implements player controls for the shadow
 func control_shadow(delta):
@@ -94,4 +109,8 @@ func controls_toggled():
 		controlled = true
 		# Remove all points from the curve to start again when the player flips control again
 		$ShadowPath2D.get_curve().clear_points()
-		
+
+# Handles the player death - causing the shadow to no longer be controlled
+func player_died():
+	controlled = false
+	player_dead = true
