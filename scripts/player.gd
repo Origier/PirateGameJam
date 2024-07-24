@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var jump_speed := -550
 
 # Health values for the player
-@export var starting_health := 50
 @export var max_health := 50
 var current_health := max_health
 
