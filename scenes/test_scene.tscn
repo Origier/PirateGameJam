@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://q4bn3pl06wcl" path="res://scenes/player.tscn" id="1_7jrof"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_movm3"]
 [ext_resource type="PackedScene" uid="uid://deih6dyjylu6b" path="res://scenes/platform.tscn" id="2_xtubp"]
-[ext_resource type="PackedScene" uid="uid://cm2m3dhu54o7f" path="res://scenes/shadow.tscn" id="4_tagtd"]
-[ext_resource type="PackedScene" uid="uid://bkjmle6cdrvel" path="res://scenes/player_camera.tscn" id="5_nw6xr"]
+[ext_resource type="PackedScene" uid="uid://dti2wvixudee2" path="res://scenes/shadow.tscn" id="4_tagtd"]
+[ext_resource type="PackedScene" uid="uid://dusccr50tmlfq" path="res://scenes/player_camera.tscn" id="5_nw6xr"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_movm3")
