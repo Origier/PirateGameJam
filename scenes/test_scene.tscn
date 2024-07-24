@@ -1,35 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://c43ctpjmhvtfl"]
+[gd_scene load_steps=5 format=3 uid="uid://c43ctpjmhvtfl"]
 
 [ext_resource type="PackedScene" uid="uid://q4bn3pl06wcl" path="res://scenes/player.tscn" id="1_7jrof"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_movm3"]
 [ext_resource type="PackedScene" uid="uid://deih6dyjylu6b" path="res://scenes/platform.tscn" id="2_xtubp"]
-[ext_resource type="PackedScene" uid="uid://dti2wvixudee2" path="res://scenes/shadow.tscn" id="4_tagtd"]
-[ext_resource type="PackedScene" uid="uid://dusccr50tmlfq" path="res://scenes/player_camera.tscn" id="5_nw6xr"]
+[ext_resource type="PackedScene" uid="uid://ca4x6k7qf3ebk" path="res://scenes/tarrain.tscn" id="4_q3xvk"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_movm3")
 
 [node name="Player" parent="." instance=ExtResource("1_7jrof")]
-position = Vector2(114, 560)
+position = Vector2(-130, 579)
+scale = Vector2(1, 1)
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player", "shadow") instance=ExtResource("5_nw6xr")]
-player = NodePath("../Player")
-shadow = NodePath("../Shadow")
-
-[node name="Shadow" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tagtd")]
-position = Vector2(92, 560)
-player = NodePath("../Player")
-
-[node name="Platforms" type="Node2D" parent="."]
-
-[node name="Platform" parent="Platforms" instance=ExtResource("2_xtubp")]
+[node name="Platform" parent="." instance=ExtResource("2_xtubp")]
+visible = false
 position = Vector2(362, 576)
 
-[node name="Platform2" parent="Platforms" instance=ExtResource("2_xtubp")]
+[node name="Platform2" parent="." instance=ExtResource("2_xtubp")]
+visible = false
 position = Vector2(848, 495)
 
-[node name="Platform3" parent="Platforms" instance=ExtResource("2_xtubp")]
+[node name="Platform3" parent="." instance=ExtResource("2_xtubp")]
+visible = false
 position = Vector2(200, 416)
 scale = Vector2(0.5, 1)
 
-[connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]
+[node name="TileMap" parent="." instance=ExtResource("4_q3xvk")]
+position = Vector2(0, 500)
+rendering_quadrant_size = 52
+layer_0/tile_data = PackedInt32Array(196606, 196608, 0, 196607, 196608, 0, 131072, 196608, 0, 131073, 196608, 0, 131074, 196608, 0, 131075, 196608, 0, 196605, 65536, 0, 131076, 131072, 0, 131070, 65536, 1, 65535, 65536, 1, 131071, 196608, 0, 65536, 196608, 0, 0, 196608, 0, 1, 262144, 0, 65537, 196608, 2, 2, 262144, 1, 65538, 262144, 2, 65539, 196608, 2, 3, 196608, 1, 5, 131072, 2, 65542, 131072, 2, 131079, 65536, 3, 131080, 0, 3, 131081, 0, 3, 131082, 0, 3, 131083, 0, 3, 131084, 0, 3, 131085, 131072, 3, 131087, 196608, 3, -65528, 65536, 2, -65529, 196608, 4, -65527, 0, 3, -65526, 0, 3, -131061, 65536, 1, -65525, 0, 3, -65524, 0, 3, -65523, 0, 3, -65522, 0, 3, -196596, 65536, 1, -131060, 196608, 0, -196595, 196608, 0, -131059, 196608, 0, -262131, 65536, 1, -65521, 0, 3, -65520, 0, 3, -65519, 0, 3, -65518, 0, 3, -65517, 0, 3, -65516, 0, 3, -65515, 0, 3, -65514, 131072, 3, -262130, 262144, 0, -262128, 262144, 0, -262126, 262144, 0, -262124, 262144, 0, -262129, 262144, 1, -262127, 262144, 1, -262125, 262144, 1, -262123, 262144, 1, -196594, 196608, 2, -131058, 196608, 2, -196592, 196608, 2, -131056, 196608, 2, -196590, 196608, 2, -131054, 196608, 2, -196588, 196608, 2, -131052, 196608, 2, -196593, 262144, 2, -131057, 262144, 2, -196591, 262144, 2, -131055, 262144, 2, -196589, 262144, 2, -131053, 262144, 2, -196587, 262144, 2, -131051, 262144, 2, -262122, 196608, 1, -196586, 196608, 2, -131050, 196608, 2, 393214, 0, 3, 393215, 0, 3, 327680, 0, 3, 327681, 0, 3, 327682, 0, 3, 327683, 0, 3, 327684, 0, 3, 327685, 0, 3, 327686, 0, 3, 327687, 0, 3, 327688, 0, 3, 327689, 0, 3, 327690, 0, 3, 327691, 0, 3, 327692, 0, 3, 327693, 0, 3, 327694, 0, 3, 327695, 0, 3, 327696, 0, 3, 327697, 0, 3, 327698, 0, 3, 327699, 0, 3, 327700, 0, 3, 327701, 0, 3, 327702, 0, 3, 327703, 0, 3, 327704, 0, 3, 327705, 0, 3, 327706, 0, 3, 327707, 0, 3, 327708, 0, 3, 327709, 0, 3, 393213, 0, 3, 393212, 0, 3, 393211, 65536, 3, 327710, 131072, 3, 196631, 65536, 0, 196632, 196608, 0, 196633, 196608, 0, 196634, 196608, 0, 196635, 131072, 0, 23, 131072, 2, 65560, 131072, 2, -327658, 262144, 4, 65540, 262144, 268435459, -393206, 0, 2, -458743, 0, 2, -524280, 0, 2, -589817, 0, 2, -655354, 0, 2, -655355, 0, 3, -393205, 131072, 4, -655356, 0, 3, -655357, 0, 3, -655358, 0, 3, -655359, 0, 3, -655360, 0, 3, -589825, 65536, 4, -720888, 0, 3, -720887, 0, 3, -720889, 65536, 4, -786422, 65536, 2, -720886, 131072, 3, -786421, 0, 3, -786420, 0, 3, -786419, 0, 3, -786418, 0, 3, -786417, 0, 3, -786416, 131072, 3, -720879, 131072, 2, -589806, 131072, 2, -524268, 131072, 2, -458730, 131072, 2, -327656, 131072, 2)
