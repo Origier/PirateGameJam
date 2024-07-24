@@ -12,19 +12,24 @@ script = ExtResource("1_movm3")
 [node name="Player" parent="." instance=ExtResource("1_7jrof")]
 position = Vector2(114, 560)
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_nw6xr")]
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player", "shadow") instance=ExtResource("5_nw6xr")]
 player = NodePath("../Player")
+shadow = NodePath("../Shadow")
 
 [node name="Shadow" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tagtd")]
 position = Vector2(92, 560)
 player = NodePath("../Player")
 
-[node name="Platform" parent="." instance=ExtResource("2_xtubp")]
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(362, 576)
 
-[node name="Platform2" parent="." instance=ExtResource("2_xtubp")]
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(848, 495)
 
-[node name="Platform3" parent="." instance=ExtResource("2_xtubp")]
+[node name="Platform3" parent="Platforms" instance=ExtResource("2_xtubp")]
 position = Vector2(200, 416)
 scale = Vector2(0.5, 1)
+
+[connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]

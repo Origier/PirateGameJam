@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_20yks"]
 
-[node name="Shadow" type="Node2D"]
+[node name="Shadow" type="Node2D" groups=["player"]]
 scale = Vector2(10, 10)
 script = ExtResource("1_o4xl2")
 
