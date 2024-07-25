@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Controls player movement throughout the game
-@export var speed := 20000
+@export var speed := 15000
 @export var sprint_speed := 30000
 @export var jump_speed := -500
 
@@ -15,6 +15,15 @@ var disabled_timer = 0
 # Health values for the player
 @export var max_health := 50
 var current_health := max_health
+
+# Stamina values for the player
+@export var max_stamina := 100.0
+# These values are per second
+@export var stamina_regen_rate := 5.0
+@export var stamina_burn_rate := -20.0
+var sprinting := false
+var current_stamina := max_stamina
+var sprinting_lockout = false
 
 # Signal for indicating the player is changing to the shadow
 signal controls_toggle
@@ -36,31 +45,58 @@ func _process(_delta):
 	if (Input.is_action_just_pressed("ToggleShadow")):
 		controls_toggle.emit()
 
-# Handles player controlls
+# Handles player movement in the game
 func _physics_process(delta):
 	# Adding the gravity
 	velocity.y += gravity * delta
+	# If the player is currently controllable
 	if controlled && not disabled:
-		# Handle Jump
-		if Input.is_action_just_pressed("Jump") && is_on_floor():
-			velocity.y += jump_speed
-			
-		# Get the input direction
-		var direction = Input.get_axis("StrafeLeft", "StrafeRight")
-		if Input.is_action_pressed("Sprint"):
-			velocity.x = direction * sprint_speed * delta
-		else:
-			velocity.x = direction * speed * delta
+		control_player(delta)
+	# If the player was struck by an enemy then they are disabled temporarily
 	elif disabled:
-		disabled_timer += delta
-		# Slowing the player down gradually
-		slow_down_player_x(delta)
-		if disabled_timer >= disabled_time:
-			disabled = false
+		control_disabled_player(delta)
 	# Base case where the player isn't controlled - slow their momentum
 	else:
 		slow_down_player_x(delta)
+	# Finally move the player according to have the velocity has changed
 	move_and_slide()
+
+# Function for handling a disabled player
+func control_disabled_player(delta):
+	disabled_timer += delta
+	# Slowing the player down gradually
+	slow_down_player_x(delta)
+	if disabled_timer >= disabled_time:
+		disabled = false
+
+# Main function for controlling player input
+func control_player(delta):
+	# Handle Jump
+	if Input.is_action_just_pressed("Jump") && is_on_floor():
+		velocity.y += jump_speed
+	
+	# Toggles the sprinting state of the player
+	if Input.is_action_just_pressed("Sprint") && not sprinting_lockout:
+		sprinting = true
+	elif Input.is_action_just_released("Sprint"):
+		sprinting = false
+	
+	# Get the input direction
+	var direction = Input.get_axis("StrafeLeft", "StrafeRight")
+	# Update the stamina based on sprinting status
+	update_stamina(delta)
+	# Toggle the sprint state if the player runs out of stamina
+	# Locking them out from sprinting again for a set time
+	if (current_stamina <= 0.0):
+		sprinting = false
+		sprinting_lockout = true
+		$SprintingLockoutTimer.start()
+		
+	# Modify the players velocity accordingly
+	if sprinting:
+		velocity.x = direction * sprint_speed * delta
+	else:
+		velocity.x = direction * speed * delta
 
 # Slows the player down along the x-axis
 func slow_down_player_x(delta):
@@ -83,6 +119,7 @@ func take_damage(damage_in):
 		death.emit()
 		queue_free()
 
+# Pushes the player in the opposite direction of their direction of travel
 func push_back():
 	var new_player_direction = velocity.normalized() * -1
 	velocity = new_player_direction * push_back_force
@@ -95,3 +132,21 @@ func controls_toggled():
 		controlled = false
 	else:
 		controlled = true
+
+# Updates the players stamina based on if they are sprinting or not, locking it between 0 - max_stamina
+# TODO: Modifiy a UI element to show the players stamina in real time
+func update_stamina(delta):
+	var delta_stamina = 0
+	if sprinting:
+		delta_stamina = delta * stamina_burn_rate
+	else:
+		delta_stamina = delta * stamina_regen_rate
+	current_stamina += delta_stamina
+	if current_stamina <= 0.0:
+		current_stamina = 0.0
+	elif current_stamina >= max_stamina:
+		current_stamina = max_stamina
+
+# Resets the lockout to allow the player to sprint again
+func _on_sprinting_lockout_timer_timeout():
+	sprinting_lockout = false

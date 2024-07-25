@@ -18,3 +18,8 @@ texture = SubResource("PlaceholderTexture2D_5rj28")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.38419e-08, 0)
 shape = SubResource("RectangleShape2D_6tdhd")
+
+[node name="SprintingLockoutTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SprintingLockoutTimer" to="." method="_on_sprinting_lockout_timer_timeout"]
