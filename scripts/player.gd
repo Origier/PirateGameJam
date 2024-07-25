@@ -15,6 +15,8 @@ var disabled_timer = 0
 # Health values for the player
 @export var max_health := 50
 var current_health := max_health
+# Lockout for taking damage to recently
+var damage_received_lockout := false
 
 # Stamina values for the player
 @export var max_stamina := 100.0
@@ -60,6 +62,17 @@ func _physics_process(delta):
 		slow_down_player_x(delta)
 	# Finally move the player according to have the velocity has changed
 	move_and_slide()
+	detect_enemy_collision()
+	
+# Function to work around RigidBody limitations and detemine if the player hit an enemy 
+func detect_enemy_collision():
+	# Work around for detecting rigid bodies
+	var kc = get_last_slide_collision()
+	if (kc != null):
+		var node = kc.get_collider()
+		if node is Enemy2D:
+			take_damage(node.body_damage)
+			push_back()
 
 # Function for handling a disabled player
 func control_disabled_player(delta):
@@ -111,13 +124,16 @@ func slow_down_player_x(delta):
 
 # Destroy player when they take too much damage
 func take_damage(damage_in):
-	current_health -= damage_in
-	# TODO - Implement the UI changes here to show the player taking damage
-	print("Remaining Health: " + String.num_int64(current_health))
-	# Delete player
-	if (current_health <= 0):
-		death.emit()
-		queue_free()
+	if not damage_received_lockout:
+		current_health -= damage_in
+		damage_received_lockout = true
+		$DamageReceivedLockoutTimer.start()
+		# TODO - Implement the UI changes here to show the player taking damage
+		print("Remaining Health: " + String.num_int64(current_health))
+		# Delete player
+		if (current_health <= 0):
+			death.emit()
+			queue_free()
 
 # Pushes the player in the opposite direction of their direction of travel
 func push_back():
@@ -150,3 +166,6 @@ func update_stamina(delta):
 # Resets the lockout to allow the player to sprint again
 func _on_sprinting_lockout_timer_timeout():
 	sprinting_lockout = false
+
+func _on_damage_received_lockout_timer_timeout():
+	damage_received_lockout = false
