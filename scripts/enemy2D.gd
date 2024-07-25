@@ -32,3 +32,4 @@ func get_body_damage():
 func _on_body_entered(body):
 	if body is CharacterBody2D:
 		body.take_damage(body_damage)
+		body.push_back()
