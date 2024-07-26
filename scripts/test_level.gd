@@ -11,8 +11,8 @@ func _process(_delta):
 	
 	# Testable functions - uncomment the test to run it
 	if Input.is_action_just_pressed("TestAction"):
-		# _test_damage_to_player(10)
-		# _test_enemy_movement()
+		#_test_damage_to_player(10)
+		_test_enemy_movement()
 		pass
 
 func _test_damage_to_player(damage):

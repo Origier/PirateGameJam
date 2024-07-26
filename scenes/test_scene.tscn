@@ -35,7 +35,7 @@ position = Vector2(200, 416)
 scale = Vector2(0.5, 1)
 
 [node name="Enemy2D" parent="." instance=ExtResource("6_c1423")]
-position = Vector2(624, 433)
+position = Vector2(638.41, 435)
 
 [connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]
 [connection signal="death" from="Player" to="." method="_on_player_death"]
