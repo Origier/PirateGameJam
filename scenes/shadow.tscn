@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dti2wvixudee2"]
+
+[ext_resource type="Script" path="res://scripts/shadow.gd" id="1_o4xl2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2k42j"]
+
+[sub_resource type="Curve2D" id="Curve2D_20yks"]
+
+[node name="Shadow" type="Node2D" groups=["player"]]
+scale = Vector2(10, 10)
+script = ExtResource("1_o4xl2")
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_2k42j")
+
+[node name="ShadowPath2D" type="Path2D" parent="."]
+position = Vector2(-9.2, -56)
+scale = Vector2(0.1, 0.1)
+curve = SubResource("Curve2D_20yks")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ShadowPath2D"]
