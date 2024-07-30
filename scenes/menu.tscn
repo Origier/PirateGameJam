@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://d01mq3j0cugub"]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_oj8dr"]
+[ext_resource type="Texture2D" uid="uid://owfm78indorw" path="res://assets/Button_Play.png" id="2_mol08"]
+[ext_resource type="Texture2D" uid="uid://h5jfc44fx4cp" path="res://assets/Button_Play_Pressed.jpg" id="3_0m22g"]
+[ext_resource type="PackedScene" uid="uid://3v2rmfxgub7k" path="res://scenes/background.tscn" id="3_82jcc"]
+[ext_resource type="Texture2D" uid="uid://cwcwfkvj7n5d2" path="res://assets/ButtonSettings.png" id="3_m46t2"]
+[ext_resource type="Texture2D" uid="uid://c8odgmhliohb1" path="res://assets/Button_Quit.png" id="4_dx8du"]
+[ext_resource type="Texture2D" uid="uid://bf1wa1bh7bmax" path="res://assets/Button_Settings_Pressed.jpg" id="5_00guy"]
+[ext_resource type="Texture2D" uid="uid://veqt4axw2gok" path="res://assets/Button_Play_Hovered.png" id="5_exyq3"]
+[ext_resource type="Texture2D" uid="uid://uurcci7dgnx3" path="res://assets/Button_Quit_Pressed.jpg" id="7_efv8c"]
+[ext_resource type="Texture2D" uid="uid://f88tniv3wtyr" path="res://assets/Button_Settings_Hovered.png" id="8_gl1xw"]
+[ext_resource type="Texture2D" uid="uid://nmsq25ax3uo2" path="res://assets/Button_Quit_Hovered.png" id="11_l4dkj"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 415.0
+offset_top = 222.0
+offset_right = 415.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_oj8dr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-436.768, -198.948)
+scale = Vector2(2, 1.932)
+zoom = Vector2(2, 2)
+
+[node name="TileMap" parent="." instance=ExtResource("3_82jcc")]
+position = Vector2(1804.23, 1071.05)
+scale = Vector2(4.5, 4.441)
+layer_0/tile_data = PackedInt32Array(-393228, 0, 0, -327692, 0, 1, -262156, 0, 2, -393227, 65536, 0, -327691, 65536, 1, -262155, 65536, 2, -393226, 131072, 0, -327690, 131072, 1, -262154, 131072, 2, -393225, 196608, 0, -327689, 196608, 1, -262153, 196608, 2, -393224, 262144, 0, -327688, 262144, 1, -262152, 262144, 2)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_left = -1007.77
+offset_top = -511.948
+offset_right = 138.232
+offset_bottom = 143.052
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("2_mol08")
+texture_pressed = ExtResource("3_0m22g")
+texture_hover = ExtResource("5_exyq3")
+
+[node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_m46t2")
+texture_pressed = ExtResource("5_00guy")
+texture_hover = ExtResource("8_gl1xw")
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_dx8du")
+texture_pressed = ExtResource("7_efv8c")
+texture_hover = ExtResource("11_l4dkj")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

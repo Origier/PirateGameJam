@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://3v2rmfxgub7k"]
+
+[ext_resource type="Texture2D" uid="uid://ckjij2qhhrbuf" path="res://assets/Background_Sprite.png" id="1_vw5g4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lcwu2"]
+texture = ExtResource("1_vw5g4")
+texture_region_size = Vector2i(52, 52)
+use_texture_padding = false
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qgtgk"]
+tile_size = Vector2i(52, 52)
+sources/0 = SubResource("TileSetAtlasSource_lcwu2")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_qgtgk")
+format = 2
