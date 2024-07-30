@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgcj5a6qqf0if"]
+[gd_scene load_steps=8 format=3 uid="uid://cgcj5a6qqf0if"]
 
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_03bsn"]
 [ext_resource type="Texture2D" uid="uid://cf8rtjdubhqpx" path="res://assets/Button_Resume.png" id="1_ba2fb"]
 [ext_resource type="Texture2D" uid="uid://ddkdmqoe2k0g7" path="res://assets/Button_Resume_Pressed.jpg" id="2_b050e"]
 [ext_resource type="Texture2D" uid="uid://cwcwfkvj7n5d2" path="res://assets/ButtonSettings.png" id="3_8a1qr"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_03bsn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -40,3 +42,7 @@ texture_pressed = ExtResource("4_uqaw6")
 layout_mode = 2
 texture_normal = ExtResource("5_xua3j")
 texture_pressed = ExtResource("6_up20a")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
