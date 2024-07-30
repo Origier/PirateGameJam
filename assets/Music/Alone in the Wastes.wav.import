@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cje2x1865mb7n"
+path="res://.godot/imported/Alone in the Wastes.wav-447cc6b77bba5748b8a5bbc17457fb23.sample"
+
+[deps]
+
+source_file="res://assets/Music/Alone in the Wastes.wav"
+dest_files=["res://.godot/imported/Alone in the Wastes.wav-447cc6b77bba5748b8a5bbc17457fb23.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

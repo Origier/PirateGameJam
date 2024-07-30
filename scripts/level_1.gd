@@ -5,6 +5,8 @@ var paused = false
 
 func _on_player_controls_toggle():
 	get_tree().call_group("player", "controls_toggled")
+	
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Pause"):

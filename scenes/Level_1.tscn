@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjxyp371edelw"]
+[gd_scene load_steps=12 format=3 uid="uid://cjxyp371edelw"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_1vup1"]
 [ext_resource type="PackedScene" uid="uid://3v2rmfxgub7k" path="res://scenes/background.tscn" id="1_cd88h"]
 [ext_resource type="PackedScene" uid="uid://ca4x6k7qf3ebk" path="res://scenes/tarrain.tscn" id="2_ud5xe"]
+[ext_resource type="PackedScene" uid="uid://dl6k6w0p406cs" path="res://scenes/basic_bouncing_enemy.tscn" id="2_wkqs7"]
 [ext_resource type="PackedScene" uid="uid://q4bn3pl06wcl" path="res://scenes/player.tscn" id="3_bx7vy"]
 [ext_resource type="PackedScene" uid="uid://dti2wvixudee2" path="res://scenes/shadow.tscn" id="4_kk13q"]
 [ext_resource type="PackedScene" uid="uid://dusccr50tmlfq" path="res://scenes/player_camera.tscn" id="4_swxww"]
 [ext_resource type="PackedScene" uid="uid://cgcj5a6qqf0if" path="res://scenes/pause_menu.tscn" id="5_dqadf"]
+[ext_resource type="PackedScene" uid="uid://dslptg8f61y6x" path="res://scenes/basic_flying_enemy.tscn" id="9_vmsgp"]
+[ext_resource type="PackedScene" uid="uid://qdk5jnwkux45" path="res://scenes/basic_enemy.tscn" id="10_y3sjw"]
+[ext_resource type="AudioStream" uid="uid://cje2x1865mb7n" path="res://assets/Music/Alone in the Wastes.wav" id="11_8jq0m"]
 
 [node name="Level1" type="Node2D"]
 position = Vector2(-903, 335)
@@ -47,5 +51,23 @@ offset_bottom = -312.703
 scale = Vector2(0.924634, 0.948391)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="BasicBouncingEnemy" parent="Enemies" instance=ExtResource("2_wkqs7")]
+z_index = 290
+position = Vector2(521, -169)
+scale = Vector2(2, 2)
+
+[node name="BasicFlyingEnemy" parent="Enemies" instance=ExtResource("9_vmsgp")]
+position = Vector2(392, -283)
+
+[node name="BasicEnemy" parent="Enemies" instance=ExtResource("10_y3sjw")]
+position = Vector2(658, -180)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8jq0m")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]
