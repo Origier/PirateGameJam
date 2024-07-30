@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgcj5a6qqf0if"]
+[gd_scene load_steps=10 format=3 uid="uid://cgcj5a6qqf0if"]
 
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_03bsn"]
 [ext_resource type="Texture2D" uid="uid://cf8rtjdubhqpx" path="res://assets/Button_Resume.png" id="1_ba2fb"]
 [ext_resource type="Texture2D" uid="uid://ddkdmqoe2k0g7" path="res://assets/Button_Resume_Pressed.jpg" id="2_b050e"]
+[ext_resource type="Shader" path="res://scenes/pause_menu.gdshader" id="2_nt2cx"]
 [ext_resource type="Texture2D" uid="uid://cwcwfkvj7n5d2" path="res://assets/ButtonSettings.png" id="3_8a1qr"]
 [ext_resource type="Texture2D" uid="uid://bf1wa1bh7bmax" path="res://assets/Button_Settings_Pressed.jpg" id="4_uqaw6"]
 [ext_resource type="Texture2D" uid="uid://c8odgmhliohb1" path="res://assets/Button_Quit.png" id="5_xua3j"]
 [ext_resource type="Texture2D" uid="uid://uurcci7dgnx3" path="res://assets/Button_Quit_Pressed.jpg" id="6_up20a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r10we"]
+shader = ExtResource("2_nt2cx")
+shader_parameter/amount = 3.0
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +21,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_03bsn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_r10we")
+layout_mode = 0
+offset_left = 3311.0
+offset_top = -1492.0
+offset_right = 3351.0
+offset_bottom = -1452.0
+scale = Vector2(-1099.35, 333.136)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
