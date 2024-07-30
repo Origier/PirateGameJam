@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d01mq3j0cugub"]
+[gd_scene load_steps=12 format=3 uid="uid://d01mq3j0cugub"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_oj8dr"]
 [ext_resource type="Texture2D" uid="uid://owfm78indorw" path="res://assets/Button_Play.png" id="2_mol08"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cwcwfkvj7n5d2" path="res://assets/ButtonSettings.png" id="3_m46t2"]
 [ext_resource type="Texture2D" uid="uid://c8odgmhliohb1" path="res://assets/Button_Quit.png" id="4_dx8du"]
 [ext_resource type="Texture2D" uid="uid://bf1wa1bh7bmax" path="res://assets/Button_Settings_Pressed.jpg" id="5_00guy"]
+[ext_resource type="Texture2D" uid="uid://veqt4axw2gok" path="res://assets/Button_Play_Hovered.png" id="5_exyq3"]
 [ext_resource type="Texture2D" uid="uid://uurcci7dgnx3" path="res://assets/Button_Quit_Pressed.jpg" id="7_efv8c"]
+[ext_resource type="Texture2D" uid="uid://f88tniv3wtyr" path="res://assets/Button_Settings_Hovered.png" id="8_gl1xw"]
+[ext_resource type="Texture2D" uid="uid://nmsq25ax3uo2" path="res://assets/Button_Quit_Hovered.png" id="11_l4dkj"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -54,16 +57,19 @@ layout_mode = 2
 size_flags_stretch_ratio = 0.0
 texture_normal = ExtResource("2_mol08")
 texture_pressed = ExtResource("3_0m22g")
+texture_hover = ExtResource("5_exyq3")
 
 [node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_m46t2")
 texture_pressed = ExtResource("5_00guy")
+texture_hover = ExtResource("8_gl1xw")
 
 [node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_dx8du")
 texture_pressed = ExtResource("7_efv8c")
+texture_hover = ExtResource("11_l4dkj")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
