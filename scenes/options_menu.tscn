@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsb5lhi2dp3k2"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_ry6vx"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 186.0
+offset_right = -449.0
+offset_bottom = -293.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ry6vx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.962
+anchor_top = -1.413
+anchor_right = -0.962
+anchor_bottom = -1.413
+offset_left = 549.498
+offset_top = 288.75
+offset_right = 788.498
+offset_bottom = 441.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume
+"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

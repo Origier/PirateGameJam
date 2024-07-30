@@ -7,6 +7,9 @@ extends CharacterBody2D
 @export var sprint_speed := 30000
 @export var jump_speed := -550
 
+var paused = false
+@onready var pause_menu = $PauseMenu
+
 # Signal for indicating the player is changing to the shadow
 signal controls_toggle
 
@@ -21,6 +24,7 @@ func _process(_delta):
 	# Emits a message to the world that the player is toggling to the shadow
 	if (Input.is_action_just_pressed("ToggleShadow")):
 		controls_toggle.emit()
+<<<<<<< HEAD
 	
 	#plays animations
 	if Input.is_action_pressed("StrafeRight"):
@@ -44,11 +48,30 @@ func _process(_delta):
 	else:
 		_animated_sprite.play("to_right")
 		_animated_sprite.speed_scale = 1
+||||||| parent of d32717c (feat(ui): add menus)
+=======
+	# pause menu 
+	if Input.is_action_just_pressed("pause"):
+		pauseMenu()
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		pause_menu.show()
+		Engine.time_scale = 0
+		
+		paused = !paused
+>>>>>>> d32717c (feat(ui): add menus)
 
 # Handles player controlls
 func _physics_process(delta):
 	# Adding the gravity
 	velocity.y += gravity * delta
+	
+	
+		
+
 	
 	if controlled:
 		# Handle Jump
