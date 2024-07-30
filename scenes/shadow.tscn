@@ -125,7 +125,6 @@ animations = [{
 script = ExtResource("1_o4xl2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_0mlo4")
 animation = &"walk_side"
 

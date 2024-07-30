@@ -45,10 +45,15 @@ func _process(_delta):
 		_animated_sprite.play("to_right")
 		_animated_sprite.speed_scale = 1
 
+
 # Handles player controlls
 func _physics_process(delta):
 	# Adding the gravity
 	velocity.y += gravity * delta
+	
+	
+		
+
 	
 	if controlled:
 		# Handle Jump
