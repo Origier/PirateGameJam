@@ -27,13 +27,13 @@ region = Rect2(208, 52, 52, 52)
 atlas = ExtResource("2_yojpu")
 region = Rect2(0, 104, 52, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwrn8"]
-atlas = ExtResource("2_yojpu")
-region = Rect2(0, 0, 52, 52)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvot7"]
 atlas = ExtResource("2_yojpu")
 region = Rect2(52, 0, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwrn8"]
+atlas = ExtResource("2_yojpu")
+region = Rect2(0, 0, 52, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_721vj"]
 atlas = ExtResource("2_yojpu")
@@ -91,10 +91,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwrn8")
+"texture": SubResource("AtlasTexture_gvot7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gvot7")
+"texture": SubResource("AtlasTexture_vwrn8")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_721vj")
@@ -126,7 +126,7 @@ script = ExtResource("1_o4xl2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0mlo4")
-animation = &"walk_side"
+animation = &"hover_side"
 
 [node name="ShadowPath2D" type="Path2D" parent="."]
 position = Vector2(-9.2, -56)
