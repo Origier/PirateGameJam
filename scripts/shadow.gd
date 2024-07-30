@@ -51,7 +51,7 @@ func _process(delta):
 			
 	#plays animations
 	if Input.is_action_pressed("StrafeRight"):
-			_animated_sprite.play("walk_side")
+			_animated_sprite.play("hover_side")
 			if Input.is_action_pressed("Sprint"):
 				_animated_sprite.speed_scale = 1.5
 			else:
