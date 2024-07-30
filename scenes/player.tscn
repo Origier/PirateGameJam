@@ -230,8 +230,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wup3q"]
-radius = 13.6953
-height = 44.7862
+radius = 1.3359
+height = 9.22633
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(10.405, 10.405)
@@ -243,7 +243,6 @@ sprite_frames = SubResource("SpriteFrames_6mx3w")
 animation = &"jump_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
 position = Vector2(-0.528592, 4.42095)
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_wup3q")
@@ -256,4 +255,3 @@ one_shot = true
 
 [connection signal="timeout" from="SprintingLockoutTimer" to="." method="_on_sprinting_lockout_timer_timeout"]
 [connection signal="timeout" from="DamageReceivedLockoutTimer" to="." method="_on_damage_received_lockout_timer_timeout"]
-

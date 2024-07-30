@@ -47,3 +47,5 @@ offset_bottom = -312.703
 scale = Vector2(0.924634, 0.948391)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[connection signal="controls_toggle" from="Player" to="." method="_on_player_controls_toggle"]
