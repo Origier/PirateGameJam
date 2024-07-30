@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var _animated_sprite = $AnimatedSprite2D
+
 # Controls player movement throughout the game
 @export var speed := 20000
 @export var sprint_speed := 30000
@@ -19,6 +21,29 @@ func _process(_delta):
 	# Emits a message to the world that the player is toggling to the shadow
 	if (Input.is_action_just_pressed("ToggleShadow")):
 		controls_toggle.emit()
+	
+	#plays animations
+	if Input.is_action_pressed("StrafeRight"):
+		if Input.is_action_pressed("Jump"):
+			_animated_sprite.play("jump_right")
+		else:
+			_animated_sprite.play("walking_right")
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	elif Input.is_action_pressed("StrafeLeft"):
+		if Input.is_action_pressed("Jump"):
+			_animated_sprite.play("jump_left")
+		else:
+			_animated_sprite.play("walking_left")
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	else:
+		_animated_sprite.play("to_right")
+		_animated_sprite.speed_scale = 1
 
 # Handles player controlls
 func _physics_process(delta):

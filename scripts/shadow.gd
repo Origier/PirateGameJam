@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var _animated_sprite = $AnimatedSprite2D
+
 # Used to determine how much time should pass before updating the path node for the shadow to follow
 @export var time_between_path_nodes := 0.1
 @export var speed := 400
@@ -46,6 +48,36 @@ func _process(delta):
 			last_player_x = player.position.x
 			update_path(delta)
 			move_along_path(delta)
+			
+	#plays animations
+	if Input.is_action_pressed("StrafeRight"):
+			_animated_sprite.play("walk_side")
+			_animated_sprite.flip_v
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	elif Input.is_action_pressed("StrafeLeft"):
+			_animated_sprite.play("walk_side")
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	elif Input.is_action_pressed("Up"):
+			_animated_sprite.play("hover_side")
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	elif Input.is_action_pressed("Down"):
+			_animated_sprite.play("walk_side")
+			if Input.is_action_pressed("Sprint"):
+				_animated_sprite.speed_scale = 1.5
+			else:
+				_animated_sprite.speed_scale = 1
+	else:
+		_animated_sprite.stop()
+		_animated_sprite.speed_scale = 1
 
 # Implements player controls for the shadow
 func control_shadow(delta):
