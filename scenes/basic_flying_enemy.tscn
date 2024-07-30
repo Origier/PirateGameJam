@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dslptg8f61y6x"]
+
+[ext_resource type="Script" path="res://scripts/enemy2D.gd" id="1_gwghf"]
+[ext_resource type="Script" path="res://scripts/enemyAI2D.gd" id="2_0icun"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4kbbf"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rp2y"]
+size = Vector2(4, 4)
+
+[node name="BasicFlyingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_gwghf")
+affected_by_gravity = false
+movement_speed = 2500
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = SubResource("PlaceholderTexture2D_4kbbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_5rp2y")
+
+[node name="EnemyAI2D" type="Node2D" parent="."]
+script = ExtResource("2_0icun")
+movement_type = 2
+time_between_moves = 0.25
+max_constant_move_time = 4.0

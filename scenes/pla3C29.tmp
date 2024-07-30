@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://q4bn3pl06wcl"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_8alpq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5rj28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tdhd"]
+size = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(10, 10)
+script = ExtResource("1_8alpq")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+texture = SubResource("PlaceholderTexture2D_5rj28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.38419e-08, 0)
+shape = SubResource("RectangleShape2D_6tdhd")
+
+[node name="SprintingLockoutTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DamageReceivedLockoutTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SprintingLockoutTimer" to="." method="_on_sprinting_lockout_timer_timeout"]
+[connection signal="timeout" from="DamageReceivedLockoutTimer" to="." method="_on_damage_received_lockout_timer_timeout"]

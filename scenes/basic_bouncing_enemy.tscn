@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl6k6w0p406cs"]
+
+[ext_resource type="Script" path="res://scripts/enemy2D.gd" id="1_d68f7"]
+[ext_resource type="Script" path="res://scripts/enemyAI2D.gd" id="2_cbdmi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qdq6d"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g71du"]
+size = Vector2(10, 10)
+
+[node name="BasicBouncingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_d68f7")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = SubResource("PlaceholderTexture2D_qdq6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.982967, 0.987391)
+shape = SubResource("RectangleShape2D_g71du")
+
+[node name="EnemyAI2D" type="Node2D" parent="."]
+script = ExtResource("2_cbdmi")
+movement_type = 3
+time_between_moves = 0.1
+max_constant_move_time = 1.0
